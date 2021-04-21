@@ -10,11 +10,11 @@ img_height = 224
 img_width = 224
 epochs = 10
 
-IMAGE_FILE_PATH = '/tmp/training_images'
+IMAGE_FILE_PATH = '/tmp/training/images'
 DATASET_NAME = 'test-set'
 
 TRAINING_RUN_NAME = 'test-run'
-HISTORY_FILE_PATH = '/tmp/training_run_history'
+HISTORY_FILE_PATH = '/tmp/training/run-history'
 save_dir = os.path.join(HISTORY_FILE_PATH, TRAINING_RUN_NAME, '{}'.format(datetime.now().strftime("%Y-%b-%d-%H-%M-%S")) )
 os.makedirs(save_dir, exist_ok=True)
 
