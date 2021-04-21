@@ -6,7 +6,7 @@ import os
 import shutil
 
 DATABASE_URL = os.environ['DATABASE_URL']
-IMAGE_FILE_PATH = '/tmp/training/images'
+IMAGE_FILE_PATH = '~/training/images'
 DATASET_NAME = 'test-set'
 
 cache_folder_path = os.path.join(IMAGE_FILE_PATH, 'cache')
