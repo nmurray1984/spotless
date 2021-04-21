@@ -11,7 +11,7 @@ DATASET_NAME = 'test-set'
 
 cache_folder_path = os.path.join(IMAGE_FILE_PATH, 'cache')
 os.makedirs(cache_folder_path, exist_ok=True)
-
+print('Created directory' + cache_folder_path)
 dataset_folder_path = os.path.join(IMAGE_FILE_PATH, DATASET_NAME)
 if os.path.isdir(dataset_folder_path):
    shutil.rmtree(dataset_folder_path)
@@ -45,7 +45,9 @@ for row in cursor:
    with open(cache_file_path, 'wb') as file:
       file.write(image_bytes)
 
-   os.makedirs(sym_folder_path, exist_ok=True)
+   if not os.path.isdir(sym_folder_path):
+        os.makedirs(sym_folder_path, exist_ok=True)
+        print('Created directory' + sym_folder_path)
    os.symlink(cache_file_path, sym_file_path)
 
 conn.close()
