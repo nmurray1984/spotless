@@ -11,9 +11,9 @@ img_width = 224
 epochs = 10
 
 IMAGE_FILE_PATH = '/tmp/training/images'
-DATASET_NAME = 'test-set'
+DATASET_NAME = 'nsfwv03'
 
-TRAINING_RUN_NAME = 'test-run'
+TRAINING_RUN_NAME = 'test-run-nsfwv03'
 HISTORY_FILE_PATH = '/tmp/training/run-history'
 save_dir = os.path.join(HISTORY_FILE_PATH, TRAINING_RUN_NAME, '{}'.format(datetime.now().strftime("%Y-%b-%d-%H-%M-%S")) )
 os.makedirs(save_dir, exist_ok=True)
@@ -39,10 +39,10 @@ val_ds = tf.keras.preprocessing.image_dataset_from_directory(
   image_size=(img_height, img_width),
   batch_size=batch_size)
 
-AUTOTUNE = tf.data.AUTOTUNE
+#AUTOTUNE = tf.data.AUTOTUNE
 
-train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
-val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+#train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
+#val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 IMG_SHAPE = (img_height, img_width, 3)
 

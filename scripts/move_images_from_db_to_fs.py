@@ -7,7 +7,7 @@ import shutil
 
 DATABASE_URL = os.environ['DATABASE_URL']
 IMAGE_FILE_PATH = '/tmp/training/images'
-DATASET_NAME = 'test-set'
+DATASET_NAME = 'nsfwv03'
 
 cache_folder_path = os.path.join(IMAGE_FILE_PATH, 'cache')
 os.makedirs(cache_folder_path, exist_ok=True)
@@ -26,8 +26,8 @@ FROM
    inner join nsfw_server.contributed_image c on di.image_id = c.id
    inner join nsfw_server.dataset d on di.dataset_id = d.id
 WHERE
-   d.name = 'test-set'
-'''
+   d.name = '{}'
+'''.format(DATASET_NAME)
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()
