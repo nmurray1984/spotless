@@ -11,9 +11,9 @@ img_width = 224
 epochs = 10
 
 IMAGE_FILE_PATH = '/tmp/training/images'
-DATASET_NAME = 'nsfwv03'
+DATASET_NAME = os.environ['DATASET_NAME']
 
-TRAINING_RUN_NAME = 'test-run-nsfwv03'
+TRAINING_RUN_NAME = os.environ['TRAINING_RUN_NAME']
 HISTORY_FILE_PATH = '/tmp/training/run-history'
 save_dir = os.path.join(HISTORY_FILE_PATH, TRAINING_RUN_NAME, '{}'.format(datetime.now().strftime("%Y-%b-%d-%H-%M-%S")) )
 os.makedirs(save_dir, exist_ok=True)
@@ -87,3 +87,9 @@ with open(hist_json_file, mode='w') as f:
 hist_csv_file = os.path.join(save_dir, 'history.csv')
 with open(hist_csv_file, mode='w') as f:
     hist_df.to_csv(f)
+
+#repoint symlink for most_recent run
+most_recent_run_path = os.path.join(HISTORY_FILE_PATH, 'most_recent')
+if os.path.islink(most_recent_run_path):
+  os.unlink(most_recent_run_path)
+os.symlink(save_dir, most_recent_run_path)
