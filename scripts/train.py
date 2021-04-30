@@ -14,6 +14,7 @@ epochs = 1
 
 IMAGE_FILE_PATH = '/tmp/training/images'
 DATASET_NAME = os.environ['DATASET_NAME']
+NUM_CLASSES = int(os.environ['NUM_CLASSES'])
 
 TRAINING_RUN_NAME = os.environ['TRAINING_RUN_NAME']
 HISTORY_FILE_PATH = '/tmp/training/run-history'
@@ -64,7 +65,7 @@ model = tf.keras.Sequential([
   tf.keras.layers.experimental.preprocessing.Rescaling(1./255),
   base_model,
   tf.keras.layers.GlobalAveragePooling2D(),
-  tf.keras.layers.Dense(5, activation='softmax')
+  tf.keras.layers.Dense(NUM_CLASSES, activation='softmax')
 ])
 
 model.compile(
