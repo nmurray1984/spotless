@@ -37,6 +37,7 @@ cursor.execute(query)
 
 image_bytes_query = 'select image_bytes from nsfw_server.contributed_image where id={}'
 
+i = 1
 for row in cursor:
    image_id, image_classification = row
 
@@ -53,6 +54,7 @@ for row in cursor:
       cursor2.close()
       with open(cache_file_path, 'wb') as file:
          file.write(image_bytes)
+         print('Created file' + cache_file_path)
 
    if not os.path.isdir(sym_folder_path):
         os.makedirs(sym_folder_path, exist_ok=True)
@@ -60,5 +62,6 @@ for row in cursor:
    
    if not os.path.islink(sym_file_path):
       os.symlink(cache_file_path, sym_file_path)
-
+   print('Finished row {}'.format(i))
+   i = i + 1
 conn.close()
