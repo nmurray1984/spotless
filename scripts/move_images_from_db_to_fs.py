@@ -7,7 +7,7 @@ import shutil
 
 DATABASE_URL = os.environ['DATABASE_URL']
 IMAGE_FILE_PATH = '/tmp/training/images'
-DATASET_NAME = 'nsfwv03'
+DATASET_NAME = os.environ['DATASET_NAME']
 
 dataset_folder_path = os.path.join(IMAGE_FILE_PATH, DATASET_NAME)
 if os.path.isdir(dataset_folder_path):
